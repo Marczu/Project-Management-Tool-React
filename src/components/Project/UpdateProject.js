@@ -5,6 +5,39 @@ import {connect} from "react-redux";
 import classnames from "classnames";
 
 class UpdateProject extends Component {
+    constructor(){
+        super();
+
+        this.state = {
+            id: "",
+            projectName: "",
+            projectIdentifier: "",
+            description: "",
+            start_date: "",
+            end_date: ""
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+    const {
+      id,
+      projectName,
+      projectIdentifier,
+      description,
+      start_date,
+      end_date
+    } = nextProps.project;
+
+    this.setState({
+      id,
+      projectName,
+      projectIdentifier,
+      description,
+      start_date,
+      end_date
+    });
+  }
+
     componentDidMount(){
         const {id} = this.props.match.params
         this.props.getProject(id, this.props.history)
@@ -20,23 +53,45 @@ class UpdateProject extends Component {
                     <hr />
                     <form>
                         <div className="form-group">
-                            <input type="text" className="form-control form-control-lg " placeholder="Nazwa Projektu" />
+                            <input type="text" 
+                            className="form-control form-control-lg " 
+                            placeholder="Nazwa Projektu" 
+                            name="projectName"
+                            value={this.state.projectName}
+                            />
                         </div>
                         <div className="form-group">
-                            <input type="text" className="form-control form-control-lg" placeholder="Unikalne ID Projektu"
-                                disabled />
+                            <input type="text" 
+                            className="form-control form-control-lg" 
+                            placeholder="Unikalne ID Projektu"
+                            name="projectIdentifier"
+                            value={this.state.projectIdentifier}
+                            disabled 
+                            />
                         </div>
                         
                         <div className="form-group">
-                            <textarea className="form-control form-control-lg" placeholder="Opis Projektu"></textarea>
+                            <textarea 
+                            className="form-control form-control-lg" 
+                            placeholder="Opis Projektu"
+                            name="description"
+                            value={this.state.description}
+                            />
                         </div>
                         <h6>Data zaczęcia</h6>
                         <div className="form-group">
-                            <input type="date" className="form-control form-control-lg" name="start_date" />
+                            <input type="date" 
+                            className="form-control form-control-lg" 
+                            name="start_date" 
+                            value={this.state.start_date}
+                            />
                         </div>
                         <h6>Szacowany czas ukończenia</h6>
                         <div className="form-group">
-                            <input type="date" className="form-control form-control-lg" name="end_date" />
+                            <input type="date" className="form-control form-control-lg" 
+                            name="end_date" 
+                            value={this.state.end_date}
+                            />
                         </div>
 
                         <input type="submit" className="btn btn-primary btn-block mt-4" />
@@ -51,6 +106,7 @@ class UpdateProject extends Component {
 
 UpdateProject.propTypes = {
     getProject: PropTypes.func.isRequired,
+    createProject: PropTypes.func.isRequired,
     project: PropTypes.object.isRequired
 }
 
