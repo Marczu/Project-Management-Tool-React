@@ -1,7 +1,27 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import classnames from "classnames"
+import { addProjectTask } from "../../../actions/backlogActions";
+import PropTypes from "prop-types"
 
- class AddProjectTask extends Component {
+class AddProjectTask extends Component {
+
+  constructor(props){
+      super(props)
+      const {id} = this.props.match.params
+
+      this.state = {
+        "summary": "",
+        "acceptanceCriteria": "null",
+        "status": "",
+        "priority": 0,
+        "dueDate": "",
+        "projectIdentifier": id,
+        "errors": {}
+      }
+  }
+
   render() {
     const {id} = this.props.match.params;
     return (
@@ -16,17 +36,28 @@ import { Link } from "react-router-dom"
                     <p className="lead text-center">Nazwa Projektu + Kod Projektu</p>
                     <form >
                         <div className="form-group">
-                            <input type="text" className="form-control form-control-lg" name="summary" placeholder="Podsumowanie zadania" />
+                            <input type="text" 
+                            className="form-control form-control-lg" 
+                            name="summary" 
+                            placeholder="Podsumowanie zadania" 
+                            value={this.state.summary}/>
                         </div>
                         <div className="form-group">
-                            <textarea className="form-control form-control-lg" placeholder="Kryteria przyjęcia" name="acceptanceCriteria"></textarea>
+                            <textarea className="form-control form-control-lg" 
+                            placeholder="Kryteria przyjęcia" 
+                            name="acceptanceCriteria" 
+                            value={this.state.acceptanceCriteria}></textarea>
                         </div>
                         <h6>Termin zadania</h6>
                         <div className="form-group">
-                            <input type="date" className="form-control form-control-lg" name="dueDate" />
+                            <input type="date" 
+                            className="form-control form-control-lg" 
+                            name="dueDate" 
+                            value={this.state.dueDate}/>
                         </div>
                         <div className="form-group">
-                            <select className="form-control form-control-lg" name="priority">
+                            <select className="form-control form-control-lg" name="priority"
+                            value={this.state.priority}>
                                 <option value={0}>Wybierz priorytet</option>
                                 <option value={1}>Wysoki</option>
                                 <option value={2}>Średni</option>
@@ -35,7 +66,8 @@ import { Link } from "react-router-dom"
                         </div>
 
                         <div className="form-group">
-                            <select className="form-control form-control-lg" name="status">
+                            <select className="form-control form-control-lg" name="status"
+                            value={this.state.status}>
                                 <option value="">Wybierz status</option>
                                 <option value="TO_DO">DO ZROBIENIA</option>
                                 <option value="IN_PROGRESS">W TRAKCIE</option>
@@ -53,4 +85,8 @@ import { Link } from "react-router-dom"
   }
 }
 
-export default AddProjectTask;
+AddProjectTask.propTypes = {
+    addProjectTask: PropTypes.func.isRequired
+}
+
+export default connect(null, {addProjectTask}) (AddProjectTask);
