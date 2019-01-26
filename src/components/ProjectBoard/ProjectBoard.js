@@ -32,10 +32,10 @@ import { getBacklog } from "../../actions/backlogActions"
 ProjectBoard.propTypes = {
     backlog: PropTypes.object.isRequired,
     getBacklog: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = state =>({
     backlog: state.backlog
-})
+});
 
 export default connect(mapStateToProps, {getBacklog}) (ProjectBoard);
