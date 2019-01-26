@@ -16,8 +16,7 @@ import ProjectTask from './ProjectTasks/ProjectTask';
       let doneItems = [];
   
       for (let i = 0; i < tasks.length; i++) {
-        console.log(tasks[i]);
-  
+       
         if (tasks[i].props.project_task.status === "DO ZROBIENIA") {
           todoItems.push(tasks[i]);
         }
