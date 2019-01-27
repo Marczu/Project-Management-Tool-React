@@ -60,7 +60,7 @@ class AddProjectTask extends Component {
                         Powrót do tablicy Projektu
                     </Link>
                     <h4 className="display-4 text-center">Dodaj nowe zadanie</h4>
-                    <p className="lead text-center">Nazwa Projektu + Kod Projektu</p>
+                    <p className="lead text-center"></p>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <input type="text" 
@@ -68,7 +68,7 @@ class AddProjectTask extends Component {
                                 "is-invalid":errors.summary
                             } )}
                             name="summary" 
-                            placeholder="Podsumowanie zadania" 
+                            placeholder="Streszczenie zadania" 
                             value={this.state.summary}
                             onChange={this.onChange}
                             />

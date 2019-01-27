@@ -109,7 +109,7 @@ onSubmit(e){
                                   "is-invalid":errors.summary
                               } )}
                               name="summary" 
-                              placeholder="Podsumowanie zadania" 
+                              placeholder="Streszczenie zadania" 
                               value={this.state.summary}
                               onChange={this.onChange}
                               />
