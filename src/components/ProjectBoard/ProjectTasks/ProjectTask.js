@@ -35,7 +35,7 @@ import { Link } from "react-router-dom"
                 <p className="card-text text-truncate ">
                     {project_task.acceptanceCriteria}
                 </p>
-                <Link to="" className="btn btn-primary">
+                <Link to={`/updateProjectTask/${project_task.projectIdentifier}/${project_task.projectSequence}`} className="btn btn-primary">
                     Zobacz / Uaktualnij
                 </Link>
 

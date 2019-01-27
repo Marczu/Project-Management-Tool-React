@@ -37,7 +37,7 @@ import ProjectTask from './ProjectTasks/ProjectTask';
                 <div className="col-md-4">
                     <div className="card text-center mb-2">
                         <div className="card-header bg-secondary text-white">
-                            <h3>DO ZROBIENIA</h3>
+                            <h3>Do zrobienia</h3>
                         </div>
                     </div>
                     {todoItems}

@@ -8,14 +8,14 @@ import { getBacklog } from "../../actions/backlogActions"
  class ProjectBoard extends Component {
 
   constructor(){
-    super()
+    super();
     this.state = {
         errors: {}
     }      
   }
 
   componentDidMount(){
-      const {id} = this.props.match.params
+      const {id} = this.props.match.params;
       this.props.getBacklog(id)
   }
 
@@ -53,7 +53,7 @@ import { getBacklog } from "../../actions/backlogActions"
             } else {
                 return <Backlog project_tasks_prop={project_tasks}/>
             }
-      }
+      };
 
       BoardContent = boardAlgorithm(errors, project_tasks)
 
