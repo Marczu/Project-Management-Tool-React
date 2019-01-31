@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { createNewUser } from "../../actions/securityActions"
+import PropTypes from "prop-types"
 
  class Register extends Component {
   render() {
