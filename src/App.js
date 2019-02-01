@@ -14,7 +14,25 @@ import UpdateProjectTask from './components/ProjectBoard/ProjectTasks/UpdateProj
 import Landing from './components/Layout/Landing';
 import Register from './components/UserManagement/Register';
 import Login from './components/UserManagement/Login';
+import jwt_decode from 'jwt-decode';
+import setJWTToken from './securityUtils/setJWTToken';
+import { SET_CURRENT_USER } from './actions/types';
 
+const jwtToken = localStorage.jwtToken;
+
+if (jwtToken) {
+  setJWTToken(jwtToken);
+  const decoded_token = jwt_decode(jwtToken);
+  store.dispatch({
+    type: SET_CURRENT_USER,
+    payload: decoded_token
+  });
+
+  const currentTime = Date.now()/1000
+  if(decoded_token.exp < currentTime){
+    // window.location.href = "/"
+  }
+}
 
 class App extends Component {
   render() {
@@ -30,7 +48,6 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
 
-
             {
               // Private Routes
             }
@@ -38,9 +55,16 @@ class App extends Component {
             <Route exact path="/addProject" component={AddProject} />
             <Route exact path="/updateProject/:id" component={UpdateProject} />
             <Route exact path="/projectBoard/:id" component={ProjectBoard} />
-            <Route exact path="/addProjectTask/:id" component={AddProjectTask} />
-            <Route exact path="/updateProjectTask/:backlog_id/:pt_id" component={UpdateProjectTask} />
-
+            <Route
+              exact
+              path="/addProjectTask/:id"
+              component={AddProjectTask}
+            />
+            <Route
+              exact
+              path="/updateProjectTask/:backlog_id/:pt_id"
+              component={UpdateProjectTask}
+            />
           </div>
         </Router>
       </Provider>
